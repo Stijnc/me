@@ -1,0 +1,49 @@
+/* @theme custom-default */
+
+@import 'default';
+@import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css';
+
+h1 {
+    font-size: 72px;
+    background: #a8ff78;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #78ffd6, #a8ff78);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #78ffd6, #a8ff78);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+}
+
+img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+}
+
+img[alt~="bottom-right"] {
+    position: absolute;
+    top: 610px;
+    right: 0px;
+    height: 100px;
+}
+
+.fa-twitter {
+    color: white;
+}
+
+.fa-mastodon {
+    color: white;
+}
+
+.fa-linkedin {
+    color: white;
+}
+
+.fa-window-maximize {
+    color: white;
+}
