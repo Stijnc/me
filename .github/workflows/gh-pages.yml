@@ -9,13 +9,17 @@ on:
       - reopened
       - synchronize
       - closed
+
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
-  defaults:
-    run:
-      working-directory: presentation
+    defaults:
+      run:
+        working-directory: presentation
 
     steps:
 
