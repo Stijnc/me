@@ -17,36 +17,32 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: presentation
-
     steps:
 
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Copy images
-        run: mkdir ../build && cp -R assets ../build/assets
+        run: mkdir build && cp -R ./presentation/assets ./build/assets
 
       - name: Marp Build html
         uses: docker://marpteam/marp-cli:v1.7.0
         with:
-          args: slides.md -o ../build/index.html 
+          args: -I presentation -o ./build/index.html --html
         env:
           MARP_USER: root:root
 
       - name: Marp Build pdf
         uses: docker://marpteam/marp-cli:v1.7.0
         with:
-          args: slides.md -o ../build --pdf --html --allow-local-files
+          args: -I presentation -o ./build --pdf --html --allow-local-files
         env:
           MARP_USER: root:root
 
       - name: Marp Build pptx
         uses: docker://marpteam/marp-cli:v1.7.0
         with:
-          args: slides.md -o build/slides.pptx --pptx --html --allow-local-files
+          args: -I presentation -o ./build --pptx --html --allow-local-files
         env:
           MARP_USER: root:root
 
@@ -54,7 +50,7 @@ jobs:
         if: ${{ github.event_name == 'pull_request' }}
         uses: rossjrw/pr-preview-action@v1
         with:
-          source-dir: ../build/
+          source-dir: ./build/
           preview-branch: gh-pages
           umbrella-dir: pr-preview
 
@@ -64,15 +60,15 @@ jobs:
         with:
           name: my-artifact
           path: |
-            ../build/*.pdf
-            ../build/*.pptx
+            ./build/*.pdf
+            ./build/*.pptx
 
       - name: Deploy production
         if: ${{ github.event_name == 'push' }}
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: ../build/
+          folder: ./build/
           clean-exclude: pr-preview/
       
 
