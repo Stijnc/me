@@ -28,7 +28,7 @@ jobs:
       - name: Marp Build html
         uses: docker://marpteam/marp-cli:v1.7.0
         with:
-          args: -I presentation -o ./build/index.html --html
+          args: ./presentation/slides.md -o build/index.html --html
         env:
           MARP_USER: root:root
 
