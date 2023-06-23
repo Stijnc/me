@@ -25,7 +25,7 @@
 			"settings": {
 				"markdown.marp.enableHtml" : true,
 				"markdown.marp.themes": [
-					"./slides/themes/custom-default.css"
+					"./presentation/themes/custom-default.css"
 				  ]
 			},
 			"extensions": [
