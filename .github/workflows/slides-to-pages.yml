@@ -58,9 +58,8 @@ jobs:
         if: ${{ github.event_name == 'push' }}
         uses: actions/upload-pages-artifact@v1
         with:
-          path: |
-          ./build/assets
-          ./build/index.html
+          # Upload entire repository
+          path: './build'
       
   deploy:
     needs: build
