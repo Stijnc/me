@@ -1,5 +1,6 @@
-name: marp-to-pages
-concurrency: marp-to-pages
+name: slides-to-pages
+
+
 on:
   push:
     branches: [ main ]
@@ -11,64 +12,62 @@ on:
       - closed
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-
       - name: Checkout code
         uses: actions/checkout@v2
-
       - name: Copy images
         run: mkdir build && cp -R ./presentation/assets ./build/assets
-
       - name: Marp Build html
         uses: docker://marpteam/marp-cli:v1.7.0
         with:
           args: ./presentation/slides.md -o build/index.html --html --theme custom-default
         env:
           MARP_USER: root:root
-
       - name: Marp Build pdf
         uses: docker://marpteam/marp-cli:v1.7.0
         with:
           args: -I presentation -o ./build --pdf --html --allow-local-files
         env:
           MARP_USER: root:root
-
       - name: Marp Build pptx
         uses: docker://marpteam/marp-cli:v1.7.0
         with:
           args: -I presentation -o ./build --pptx --html --allow-local-files
         env:
           MARP_USER: root:root
-
-      - name: Deploy preview
-        if: ${{ github.event_name == 'pull_request' }}
-        uses: rossjrw/pr-preview-action@v1
-        with:
-          source-dir: ./build/
-          preview-branch: gh-pages
-          umbrella-dir: pr-preview
-
-      - name: Upload artifacts
+      - name: Upload slide artifacts
         if: ${{ github.event_name == 'push' }}
         uses: actions/upload-artifact@v3
         with:
-          name: my-artifact
+          name: presentation
           path: |
             ./build/*.pdf
             ./build/*.pptx
-
-      - name: Deploy production
+      - name: Upload artifact
         if: ${{ github.event_name == 'push' }}
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: actions/upload-pages-artifact@v1
         with:
-          branch: gh-pages
-          folder: ./build/
-          clean-exclude: pr-preview/
+          # Upload entire repository
+          path: './build'
       
+  deploy:
+    environment:
+      name: gh-pages
+      url: ${{ steps.deployment.outputs.page_url}}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
 
