@@ -14,7 +14,7 @@ footer: Stijn Callebaut - 2023
 <i class="fa-brands fa-github"></i> [stijnc](https://github.com/stijnc)
 <i class="fa-solid fa-book-open"></i> [goodreads](https://www.goodreads.com/user/show/119129422-stijn)
 
-![bottom-right](assets/sprout_to_be_brussels_2.png)
+![bottom-right](assets/sprout_to_be_brussels.png)
 
 <!--
 
@@ -27,10 +27,10 @@ Living in BXL and loving the vibe of a multicultural city.
 
 # My family
 
-![bg left:65%](assets/20230105_093514405_iOS.jpg)
-![bg](assets/20230429_095208114_iOS%20Large.jpeg)
-![bg](assets/20230514_125637694_iOS%20Large.jpeg)
-![bg](assets/20230518_134201800_iOS%20Large.jpeg)
+![bg left:65%](1.jpg)
+![bg](2.jpeg)
+![bg](3.jpeg)
+![bg](4.jpeg)
 
 <!--
 
