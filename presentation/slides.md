@@ -27,10 +27,10 @@ Living in BXL and loving the vibe of a multicultural city.
 
 # My family
 
-![bg left:65%](1.jpg)
-![bg](2.jpeg)
-![bg](3.jpeg)
-![bg](4.jpeg)
+![bg left:65%](assets/1.jpg)
+![bg](assets/2.jpeg)
+![bg](assets/3.jpeg)
+![bg](assets/4.jpeg)
 
 <!--
 
