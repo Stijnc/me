@@ -21,7 +21,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+      - name: Run Microsoft Security DevOps Analysis
+        uses: microsoft/security-devops-action@preview
+        id: msdo
+      - name: Upload alerts to Security tab
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: ${{ steps.msdo.outputs.sarifFile }}
+      - name: Upload alerts file as a workflow artifact
+        uses: actions/upload-artifact@v3
+        with:  
+          name: alerts
+          path: ${{ steps.msdo.outputs.sarifFile }}
       - name: Copy images
         run: mkdir build && cp -R ./presentation/assets ./build/assets
       - name: Marp Build html
