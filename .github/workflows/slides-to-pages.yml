@@ -64,7 +64,7 @@ jobs:
             ./build/*.pptx
       - name: Upload artifact
         if: ${{ github.event_name == 'push' }}
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v2
         with:
           # Upload entire repository
           path: './build'
