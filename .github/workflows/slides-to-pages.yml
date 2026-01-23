@@ -30,7 +30,7 @@ jobs:
         with:
           sarif_file: ${{ steps.msdo.outputs.sarifFile }}
       - name: Upload alerts file as a workflow artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:  
           name: alerts
           path: ${{ steps.msdo.outputs.sarifFile }}
@@ -56,7 +56,7 @@ jobs:
           MARP_USER: root:root
       - name: Upload slide artifacts
         if: ${{ github.event_name == 'push' }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: presentation
           path: |
